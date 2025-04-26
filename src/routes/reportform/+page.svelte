@@ -53,7 +53,7 @@
 
   </script>
   
-  <div class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen bg-[#d1dbd7] py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
       <div class="px-4 py-5 sm:px-6 bg-gray-800 text-white">
         <h1 class="text-2xl font-bold">Expense Tracker</h1>
@@ -112,7 +112,7 @@
                     </td>
                   </tr>
                 {/each}
-                <tr class="bg-gray-50">
+                <tr class="bg-[#d1dbd7]">
                   <td class="px-4 py-2 font-medium">Total Expenses</td>
                   <td class="px-4 py-2 font-medium">${totalExpenses.toFixed(2)}</td>
                   <td></td>
@@ -229,7 +229,7 @@
                     </td>
                   </tr>
                 {/each}
-                <tr class="bg-gray-50">
+                <tr class="bg-[#d1dbd7]">
                   <td class="px-4 py-2 font-medium">Total Fixed Costs</td>
                   <td class="px-4 py-2 font-medium">${totalFixedCosts.toFixed(2)}</td>
                   <td></td>
@@ -290,7 +290,7 @@
                     </td>
                   </tr>
                 {/each}
-                <tr class="bg-gray-50">
+                <tr class="bg-[#d1dbd7]">
                   <td class="px-4 py-2 font-medium">Total Variable Costs</td>
                   <td class="px-4 py-2 font-medium">${totalVariableCosts.toFixed(2)}</td>
                   <td></td>
@@ -351,7 +351,7 @@
                     </td>
                   </tr>
                 {/each}
-                <tr class="bg-gray-50">
+                <tr class="bg-[#d1dbd7]">
                   <td class="px-4 py-2 font-medium">Total Revenue</td>
                   <td class="px-4 py-2 font-medium">${totalRevenues.toFixed(2)}</td>
                   <td></td>
