@@ -1,7 +1,8 @@
 <script>
-    import { writable } from 'svelte/store';
+    import { writable, get } from 'svelte/store';
   
     // Initialize data stores for each category
+    
     const expenses = writable([{ id: 1, description: '', amount: 0 }]);
     const rawMaterials = writable([{ id: 1, material: '', country: '' }]);
     const fixedCosts = writable([{ id: 1, description: '', amount: 0 }]);
@@ -35,6 +36,21 @@
     $: totalRevenues = $revenues.reduce((sum, item) => sum + Number(item.amount), 0);
     $: totalCosts = totalExpenses + totalFixedCosts + totalVariableCosts;
     $: profit = totalRevenues - totalCosts;
+
+    async function analysis() {
+      // console.log($expenses);
+      
+      const data = $expenses
+
+      const response = await fetch('/reportform', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+	  }
+
   </script>
   
   <div class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -381,10 +397,11 @@
             </div>
           </div>
         </section>
+       <button on:click={analysis}>Analysis</button>
       </div>
     </div>
   </div>
-  
+
   <style>
     /* Add any additional custom styles here */
     input[type="number"] {
