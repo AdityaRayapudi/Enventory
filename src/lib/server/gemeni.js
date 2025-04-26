@@ -1,26 +1,41 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+// import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI, Type } from "@google/genai";
 import { API_KEY } from '$env/static/private';
 
 
-let genAI;
 /**
- * @type {import("@google/generative-ai").GenerativeModel}
+ * @type {GoogleGenAI}
  */
-let model;
-
+let genAI;
 export function connect() {
-    // @ts-ignore
-    genAI = new GoogleGenerativeAI(API_KEY);
-    model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    genAI = new GoogleGenAI({ apiKey: API_KEY });
 }
 
 
 // @ts-ignore
 export async function run(prompt) {
+    const response = await genAI.models.generateContent({
+        model: 'gemini-2.0-flash',
+        contents: prompt,
+        config: {
+            responseMimeType: 'application/json',
+            responseSchema: {
+                type: Type.ARRAY,
+                items: {
+                    type: Type.OBJECT,
+                    properties: {
+                        'recipeName': {
+                            type: Type.STRING,
+                            description: 'Name of the recipe',
+                            nullable: false,
+                        },
+                    },
+                    required: ['recipeName'],
+                },
+            },
+        },
+    });
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
-    console.log(text);
+    console.debug(response.text);
 }
 
