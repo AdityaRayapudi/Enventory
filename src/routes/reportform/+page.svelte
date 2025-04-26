@@ -40,7 +40,20 @@
     async function analysis() {
       // console.log($expenses);
       
-      const data = $expenses
+      const data = {
+       expenses: $expenses,
+       fixedCosts: $fixedCosts,
+       variableCosts: $variableCosts,
+       revenues: $revenues,
+       rawMaterials: $rawMaterials,
+       totalExpenses: totalExpenses,
+       totalFixedCosts: totalFixedCosts,
+       totalVariableCosts: totalVariableCosts,
+       totalRevenues: totalRevenues,
+       totalCosts: totalCosts,
+       profit: profit
+     };
+
 
       const response = await fetch('/reportform', {
         method: 'POST',
