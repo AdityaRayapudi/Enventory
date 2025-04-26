@@ -1,11 +1,12 @@
 import { json } from '@sveltejs/kit';
 
 export async function POST({ request }) {
-	const expenses  = await request.json();
-    console.log(expenses);
+    const data = await request.json(); // Parse the entire JSON dictionary
+    console.log(data); // Logs the whole dict
 
-    return json({ registered: false });
+    // This is for accessing each individual thingy 
+    const { expenses, fixedCosts, variableCosts, revenues, rawMaterials, totalExpenses, totalFixedCosts, totalVariableCosts, totalRevenues, totalCosts, profit } = data;
 
-
-    
+    return json({ registered: true, message: 'Success' });
 }
+
