@@ -1,8 +1,7 @@
-import dotenv from "dotenv";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-const API_KEY= "AIzaSyAZdKe8J521rGyrENBT9TyXc0D4yDftHh4";
-dotenv.config();
+const API_KEY = process.env.API_KEY;
 
+// @ts-ignore
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 async function run() {
