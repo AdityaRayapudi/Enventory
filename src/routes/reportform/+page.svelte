@@ -54,7 +54,7 @@
   </script>
   
   <div class="min-h-screen bg-[#d1dbd7] py-8 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="max-w-5xl mx-auto bg-[#f5f7f6] rounded-lg shadow-md overflow-hidden">
       <div class="px-4 py-5 sm:px-6 bg-gray-800 text-white">
         <h1 class="text-2xl font-bold">Expense Tracker</h1>
         <p class="mt-1 text-sm">Track your business expenses, costs, and revenue</p>
@@ -82,7 +82,7 @@
                   <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-20">Actions</th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="bg-[#f5f7f6] divide-y divide-gray-200">
                 {#each $expenses as expense (expense.id)}
                   <tr>
                     <td class="px-4 py-2">
@@ -143,7 +143,7 @@
                   <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-20">Actions</th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="bg-[#f5f7f6] divide-y divide-gray-200">
                 {#each $rawMaterials as material (material.id)}
                   <tr>
                     <td class="px-4 py-2">
@@ -199,7 +199,7 @@
                   <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-20">Actions</th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="bg-[#f5f7f6] divide-y divide-gray-200">
                 {#each $fixedCosts as cost (cost.id)}
                   <tr>
                     <td class="px-4 py-2">
@@ -260,7 +260,7 @@
                   <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-20">Actions</th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="bg-[#f5f7f6] divide-y divide-gray-200">
                 {#each $variableCosts as cost (cost.id)}
                   <tr>
                     <td class="px-4 py-2">
@@ -321,7 +321,7 @@
                   <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-20">Actions</th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="bg-[#f5f7f6] divide-y divide-gray-200">
                 {#each $revenues as revenue (revenue.id)}
                   <tr>
                     <td class="px-4 py-2">
