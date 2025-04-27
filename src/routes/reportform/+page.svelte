@@ -40,6 +40,7 @@
   $: profit = totalRevenues - totalCosts;
 
   async function analysis() {
+    
     // console.log($expenses);
     
     const data = {
@@ -53,21 +54,20 @@
      totalRevenues: totalRevenues,
      totalCosts: totalCosts,
      profit: profit
-   };  
+    };  
 
-    // Redirect to the dashboard page
-    window.location.href = '/dashboard';
+   
 
-
-
-
-    const response = await fetch('/reportform', {
+   const response = await fetch('/api', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'
       }
-    });
+    });    
+
+    // Redirect to the dashboard page
+    window.location.href = '/dashboard';
   }
 
 </script>

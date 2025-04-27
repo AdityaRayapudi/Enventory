@@ -125,7 +125,7 @@ export async function environmentAnalysis(prompt) {
                         },
                         'environmentalImprovement': {
                             type: Type.ARRAY,
-                            description: 'Two suggestions for the company to imporove their environmental impact while maintaining profitability',
+                            description: 'One suggestion for the company to imporove their environmental impact while maintaining profitability, if applicable generate a better location for production',
                             items: {
                                 type: Type.STRING
                             },
