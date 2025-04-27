@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition';
   import { writable, get } from 'svelte/store';
   import { goto } from '$app/navigation'; // Import SvelteKit's navigation function
 
@@ -70,6 +71,8 @@
   }
 
 </script>
+
+<div in:fade={{ duration: 1000 }}>
 
 <div class="min-h-screen bg-[#d1dbd7] py-8 px-4 sm:px-6 lg:px-8">
   <div class="max-w-5xl mx-auto bg-[#f5f7f6] rounded-lg shadow-md overflow-hidden">
@@ -357,7 +360,7 @@
     </div>
   </div>
 </div>
-
+</div>
 <style>
   /* Add any additional custom styles here */
   input[type="number"] {
