@@ -19,7 +19,7 @@
     /**
 	 * @type {any}
 	 */
-    let data;
+    let data = $state({});
     let score = $state(0);;
 
     // Stagger the animations
@@ -64,7 +64,7 @@
           class="text-3xl md:text-5xl font-bold text-gray-800 mb-8" 
           transition:fly={{ y: 50, duration: 800, opacity: 0 }}
         >
-          YOUR ENVENTORY SCORE IS...
+          YOUR ENVIRONMENTAL SCORE IS...
         </h1>
       {/if}
       
@@ -95,7 +95,7 @@
     </div>
   
     <!-- Second page - Analytics -->
-    <div class="h-screen w-full bg-green-100 p-8 relative snap-start">
+    <div class="h-auto w-full bg-green-100 p-8 relative snap-start">
       {#if showAnalytics}
         <h2 
           class="text-3xl md:text-4xl font-bold text-green-800 absolute top-8 left-8" 
@@ -111,33 +111,49 @@
         </p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {#each data["environmentAnalysis"] as mat}
+            <!-- <p>{mat}</p> -->
+            <div class="bg-white bg-opacity-70 p-6 rounded-lg shadow-sm">
+              <div class="flex">
+                <h3 class="font-bold text-xl mb-3 text-green-700">{mat["rawMaterial"]}</h3>
+                <h3 class="font-bold text-lg mb-3 text-green-700 ml-auto">Sustainability: {parseInt(mat["score"][0])}</h3>
+                <!-- {#if parseInt(mat["score"][0]) > 65}
+                  <h3 class="font-bold text-xl mb-3 text-green-700 ml-auto">{parseInt(mat["score"][0])}</h3>
+                  {:else}
+                  <h3 class="font-bold text-xl mb-3 text-red-700 ml-auto">{parseInt(mat["score"][0])}</h3>
+                {/if} -->
+              </div>
+
+              {#each mat["environmentalImprovement"] as improv}
+                <li class="text-green-800 mb-2">
+                  {improv}
+                </li>
+
+              {/each}
+
+            </div>
+          {/each}
+
+          {#each data["genAnalysis"] as analy}
+          <!-- <p>{mat}</p> -->
           <div class="bg-white bg-opacity-70 p-6 rounded-lg shadow-sm">
-            <h3 class="font-bold text-xl mb-3 text-green-700">Carbon Footprint</h3>
-            <p class="text-green-800">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.
-            </p>
+            <div class="flex">
+              <h3 class="font-bold text-xl mb-3 text-green-700">{analy["category"]}</h3>
+              <h3 class="font-bold text-md mb-3 text-green-700 ml-auto">Profit Inc: {analy["profit"]}%</h3>
+            </div>
+
+            <li class="text-green-800 mb-2">
+              {analy["improvement"]}
+            </li>
+
+            {#each analy["reason"] as reason}
+            <li class="text-green-800 mb-2">
+              {reason}
+            </li>
+            {/each}
+
           </div>
-          
-          <div class="bg-white bg-opacity-70 p-6 rounded-lg shadow-sm">
-            <h3 class="font-bold text-xl mb-3 text-green-700">Resource Usage</h3>
-            <p class="text-green-800">
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.
-            </p>
-          </div>
-          
-          <div class="bg-white bg-opacity-70 p-6 rounded-lg shadow-sm">
-            <h3 class="font-bold text-xl mb-3 text-green-700">Sustainability Index</h3>
-            <p class="text-green-800">
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in.
-            </p>
-          </div>
-          
-          <div class="bg-white bg-opacity-70 p-6 rounded-lg shadow-sm">
-            <h3 class="font-bold text-xl mb-3 text-green-700">Improvement Areas</h3>
-            <p class="text-green-800">
-              Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
-            </p>
-          </div>
+        {/each}
         </div>
       </div>
     </div>

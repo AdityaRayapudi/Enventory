@@ -86,16 +86,21 @@ export async function generalAnalysis(prompt) {
                             },
                             nullable: false,
                         },
-                        'profits': {
+                        'profit': {
+                            type: Type.INTEGER,
+                            description: 'The predicted minimum percent increase in profits please be reasonable ',
+                            nullable: false,
+                        },
+                        'reason': {
                             type: Type.ARRAY,
-                            description: 'A numeric value representing percent increase in profits, followed by a short explanation in a javasript list format [,]',
+                            description: 'a short explanation in a javasript list format of the predicted percent increase in profits',
                             items: {
                                 type: Type.STRING
                             },
                             nullable: false,
                         },
                     },
-                    required: ['category', 'improvement', 'profits'],
+                    required: ['category', 'improvement', 'profit', 'reason'],
                 },
             },
         },
@@ -125,7 +130,7 @@ export async function environmentAnalysis(prompt) {
                         },
                         'environmentalImprovement': {
                             type: Type.ARRAY,
-                            description: 'One suggestion for the company to imporove their environmental impact while maintaining profitability, if applicable generate a better location for production',
+                            description: 'Give 2 concise but meaningful suggestions for the company to imporove their environmental impact while maintaining profitability, if applicable generate a better location for production',
                             items: {
                                 type: Type.STRING
                             },
