@@ -1,10 +1,9 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-// import { DB_URL } from '$env/static/private'
-const uri = process.env.MONGODB_URL;
+import { MONGODB_URL } from '$env/static/private';
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // @ts-ignore
-const client = new MongoClient(uri, {
+const client = new MongoClient(MONGODB_URL, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,

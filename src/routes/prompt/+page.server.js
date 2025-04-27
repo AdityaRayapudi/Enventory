@@ -11,9 +11,9 @@ export const actions = {
         const data = await request.formData();
         const prompt = data.get('prompt');
         
-        gem.run(prompt)
+        
 
-        // console.log(prompt);
+        console.log(await gem.run(prompt));
         
 	}
 };

@@ -12,8 +12,97 @@ export function connect() {
 }
 
 
-// @ts-ignore
+/**
+ * @param {string} prompt
+ */
 export async function run(prompt) {
+    const response = await genAI.models.generateContent({
+        model: 'gemini-2.0-flash',
+        contents: "Analyze the environmental impact of the following raw materials please be harsh but also vocal on how to maximize profitability" + prompt,
+        config: {
+            responseMimeType: 'application/json',
+            responseSchema: {
+                type: Type.ARRAY,
+                items: {
+                    type: Type.OBJECT,
+                    properties: {
+                        'rawMaterial': {
+                            type: Type.STRING,
+                            description: 'Name of the raw material',
+                            nullable: false,
+                        },
+                        'environmentalImprovement': {
+                            type: Type.ARRAY,
+                            description: 'Two suggestions for the company to imporove their environmental impact while maintaining profitability',
+                            items: {
+                                type: Type.STRING
+                            },
+                            nullable: false,
+                        },
+                        'score': {
+                            type: Type.ARRAY,
+                            description: 'A numeric score from 1 - 100 based how positive it is for the environment',
+                            items: {
+                                type: Type.STRING
+                            },
+                            nullable: false,
+                        },
+                    },
+                    required: ['rawMaterial', 'environmentalImprovement', 'score'],
+                },
+            },
+        },
+    });
+
+    return response.text
+}
+
+export async function generalAnalysis(prompt) {
+    const response = await genAI.models.generateContent({
+        model: 'gemini-2.0-flash',
+        contents: "With followings json about raw materials, revenue and costs give ways to opitimize the business" + prompt,
+        config: {
+            responseMimeType: 'application/json',
+            responseSchema: {
+                type: Type.ARRAY,
+                items: {
+                    type: Type.OBJECT,
+                    properties: {
+                        'rawMaterial': {
+                            type: Type.STRING,
+                            description: 'Name of the raw material',
+                            nullable: false,
+                        },
+                        'environmentalImprovement': {
+                            type: Type.ARRAY,
+                            description: 'Two suggestions for the company to imporove their environmental impact while maintaining profitability',
+                            items: {
+                                type: Type.STRING
+                            },
+                            nullable: false,
+                        },
+                        'score': {
+                            type: Type.ARRAY,
+                            description: 'A numeric score from 1 - 100 based how positive it is for the environment',
+                            items: {
+                                type: Type.STRING
+                            },
+                            nullable: false,
+                        },
+                    },
+                    required: ['rawMaterial', 'environmentalImprovement', 'score'],
+                },
+            },
+        },
+    });
+
+    return response.text
+}
+
+/**
+ * @param {string} prompt
+ */
+export async function environmentAnalysis(prompt) {
     const response = await genAI.models.generateContent({
         model: 'gemini-2.0-flash',
         contents: prompt,
@@ -24,18 +113,33 @@ export async function run(prompt) {
                 items: {
                     type: Type.OBJECT,
                     properties: {
-                        'recipeName': {
+                        'rawMaterial': {
                             type: Type.STRING,
-                            description: 'Name of the recipe',
+                            description: 'Name of the raw material',
+                            nullable: false,
+                        },
+                        'environmentalImprovement': {
+                            type: Type.ARRAY,
+                            description: 'Two suggestions for the company to imporove their environmental impact while maintaining profitability',
+                            items: {
+                                type: Type.STRING
+                            },
+                            nullable: false,
+                        },
+                        'score': {
+                            type: Type.ARRAY,
+                            description: 'A numeric score from 1 - 100 based how positive it is for the environment',
+                            items: {
+                                type: Type.STRING
+                            },
                             nullable: false,
                         },
                     },
-                    required: ['recipeName'],
+                    required: ['rawMaterial', 'environmentalImprovement', 'score'],
                 },
             },
         },
     });
 
-    console.debug(response.text);
+    return response.text
 }
-
