@@ -356,7 +356,8 @@
           </div>
         </div>
       </section>
-     <button on:click={analysis}>Analysis</button>
+     <button class="px-3 py-1 bg-[#8fb8a4] text-[#f5f7f6] rounded-md hover:bg-[#3e8b66] transition-colors text-sm"
+     on:click={analysis}>Analysis</button>
     </div>
   </div>
 </div>
