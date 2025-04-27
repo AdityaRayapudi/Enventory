@@ -57,6 +57,8 @@
     };  
 
    
+    // Redirect to the dashboard page
+    window.location.href = '/dashboard';
 
    const response = await fetch('/api', {
       method: 'POST',
@@ -65,9 +67,6 @@
         'Content-Type': 'application/json'
       }
     });    
-
-    // Redirect to the dashboard page
-    window.location.href = '/dashboard';
   }
 
 </script>
@@ -356,7 +355,7 @@
           </div>
         </div>
       </section>
-     <button class="px-3 py-1 bg-[#8fb8a4] text-[#f5f7f6] rounded-md hover:bg-[#3e8b66] transition-colors text-sm"
+     <button class="px-3 py-1 w-[100%] h-13 bg-[#3e8b66] text-[#f5f7f6] rounded-md font-bold hover:bg-[#8fb8a4] transition-colors text-2xl"
      on:click={analysis}>Analysis</button>
     </div>
   </div>

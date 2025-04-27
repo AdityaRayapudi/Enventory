@@ -31,14 +31,16 @@ export async function POST({ request }) {
     environmentAnalysis = JSON.parse(environmentAnalysis)
     // @ts-ignore
     genAnalysis = JSON.parse(genAnalysis)
-    
-    // @ts-ignore
-    for (const mat of environmentAnalysis) {
-        totalScore += parseInt(mat["score"][0])
-    }
+
+    let i = 0
 
     // @ts-ignore
-    totalScore = Math.round(totalScore / environmentAnalysis.length)
+    for (const mat of environmentAnalysis) {
+        i += 1
+        totalScore += parseInt(mat["score"][0])
+    }
+        
+    totalScore = Math.round(totalScore / i)
     
     // @ts-ignore
     for (const improv of genAnalysis) {
