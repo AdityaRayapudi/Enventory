@@ -56,7 +56,7 @@
    };  
 
     // Redirect to the dashboard page
-    window.location.href = '/reportform/dashboard';
+    window.location.href = '/dashboard';
 
 
 
