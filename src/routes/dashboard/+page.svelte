@@ -5,6 +5,14 @@
     let showTitle = false;
     let showScore = false;
     let showAnalytics = false;
+    let bounce = true;
+
+  function scrollToNextSection() {
+    const container = document.querySelector('.snap-y'); // the scroll container
+    if (container) {
+      container.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    }
+  }
     
     // Stagger the animations
     onMount(() => {
@@ -46,6 +54,16 @@
           98/100
         </div>
       {/if}
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-12 w-12 text-gray-800 animate-bounce cursor-pointer absolute bottom-8 left-1/2 transform -translate-x-1/2"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      on:click={scrollToNextSection}
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
     </div>
   
     <!-- Second page - Analytics -->
