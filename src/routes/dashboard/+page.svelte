@@ -22,7 +22,8 @@
 	 * @type {any}
 	 */
     let data = $state({});
-    let score = $state(0);;
+    let score = $state(0);
+    let profitIncrease = $state(0);;
 
     // Stagger the animations
     onMount(async () => {
@@ -39,10 +40,8 @@
       console.log(data);
       
       score = data["totalScore"]
-      let profitIncrease = data["profitIncrease"]
-      console.log(profitIncrease);
+      profitIncrease = data["profitIncrease"]
       
-
       let chart = new Chart(ctx, {
       type: 'scatter',
       data: {
@@ -53,7 +52,7 @@
             backgroundColor: '#7dbbb2', // Green
             borderColor: '#7dbbb2',
             borderWidth: 2,
-            pointRadius: 10,
+            pointRadius: 7,
             pointHoverRadius: 12
           },
           {
@@ -62,7 +61,7 @@
             backgroundColor: '#356965', // Blue
             borderColor: '#356965',
             borderWidth: 2,
-            pointRadius: 10,
+            pointRadius: 7,
             pointHoverRadius: 12
           }
         ]
@@ -210,6 +209,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="bg-white bg-opacity-70 p-6 rounded-lg shadow-sm">
             <canvas bind:this={ctx} height = 200px></canvas>
+          </div>
+
+          <div class="bg-white bg-opacity-70 p-6 rounded-lg shadow-sm text-center">
+            <h2 class="font-bold text-3xl mt-[50px] mb-3 text-green-700 ">💵 Total Profit Increase:</h2>
+            <h2 class="font-bold text-4xl mb-3 text-green-700 ">{profitIncrease}%</h2>
           </div>
 
           {#each data["environmentAnalysis"] as mat}
