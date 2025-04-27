@@ -22,15 +22,17 @@
         <!-- Navigation Links -->
         <div class="flex space-x-6 animate-fade-up">
             <a href="#" class="text-gray-800 hover:text-blue-500 transition">Dashboard</a>
-            <a href="#" class="text-gray-800 hover:text-blue-500 transition">About Us</a>
-            <a href="#" class="text-gray-800 hover:text-blue-500 transition">Sign In</a>
+
         </div>
     </nav>
     <header class="text-7xl font-bold mb-4 px-4 py-2 rounded-lg text-shadow-md animate-fade-up">
         Welcome to Enventory
     </header>
     <p class="text-3xl text-center mb-6 px-4 py-2 rounded-lg text-grey text-shadow-md animate-fade-up">
-        Analyze your business expenses and reduce your environmental impact.
+        Analyze your business expenses and reduce your environmental impact with our secret formula.
+    </p> 
+    <p class="text-3xl text-center mb-10 px-4 py-2 rounded-lg text-grey text-shadow-md  animate-fade-up">
+        Sustainability = (S + C + P) x 7
     </p>
     <button 
         on:click={handleGetStarted}
