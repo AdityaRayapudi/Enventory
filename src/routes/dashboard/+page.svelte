@@ -1,21 +1,43 @@
 <script>
+    import { error } from '@sveltejs/kit';
     import { onMount } from 'svelte';
     import { fly } from 'svelte/transition';
     
-    let showTitle = false;
-    let showScore = false;
-    let showAnalytics = false;
     let bounce = true;
 
-  function scrollToNextSection() {
-    const container = document.querySelector('.snap-y'); // the scroll container
-    if (container) {
-      container.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    function scrollToNextSection() {
+      const container = document.querySelector('.snap-y'); // the scroll container
+      if (container) {
+        container.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+      }
     }
-  }
     
+    let showTitle = $state(false);
+    let showScore = $state(false);
+    let showAnalytics = $state(false);
+
+    /**
+	 * @type {any}
+	 */
+    let data;
+    let score = $state(0);;
+
     // Stagger the animations
-    onMount(() => {
+    onMount(async () => {
+      try {
+      const res = await fetch('/api');
+      if (!res.ok) throw new Error('Failed to fetch');
+      data = await res.json();
+      } catch (err) {
+          // error = err
+          console.log("LAME ASS CODE");
+          
+      }
+
+      console.log(data);
+      
+      score = data["totalScore"]
+
       // Show title immediately after mount
       setTimeout(() => {
         showTitle = true;
@@ -51,7 +73,7 @@
           class="text-6xl md:text-9xl font-extrabold text-emerald-600" 
           transition:fly={{ y: 50, duration: 1000, opacity: 0 }}
         >
-          98/100
+          {score}/100
         </div>
       {/if}
       <p1 
