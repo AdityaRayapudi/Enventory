@@ -54,6 +54,12 @@
           98/100
         </div>
       {/if}
+      <p1 
+          class="text-3s md:text-5s font-bold text-gray-800 mb-8  absolute bottom-14 left-1/2 transform -translate-x-1/2" 
+          transition:fly={{ y: 50, duration: 800, opacity: 0 }}
+        >
+        Learn more about how you can reduce your carbon footprint
+      </p1>
       <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-12 w-12 text-gray-800 animate-bounce cursor-pointer absolute bottom-8 left-1/2 transform -translate-x-1/2"
