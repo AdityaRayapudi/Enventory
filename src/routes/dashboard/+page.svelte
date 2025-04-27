@@ -1,8 +1,10 @@
 <script>
     import { error } from '@sveltejs/kit';
     import { onMount } from 'svelte';
+    import {Chart} from 'chart.js/auto';
     import { fly } from 'svelte/transition';
     
+    let ctx;
     let bounce = true;
 
     function scrollToNextSection() {
@@ -37,7 +39,101 @@
       console.log(data);
       
       score = data["totalScore"]
+      let profitIncrease = data["profitIncrease"]
+      console.log(profitIncrease);
+      
 
+      let chart = new Chart(ctx, {
+      type: 'scatter',
+      data: {
+        datasets: [
+          {
+            label: 'Old Revenue',
+            data: [{ x: 50, y: score }],
+            backgroundColor: '#7dbbb2', // Green
+            borderColor: '#7dbbb2',
+            borderWidth: 2,
+            pointRadius: 10,
+            pointHoverRadius: 12
+          },
+          {
+            label: 'New Revenue',
+            data: [{ x: 50 * (1 + profitIncrease / 100), y: 90 }],
+            backgroundColor: '#356965', // Blue
+            borderColor: '#356965',
+            borderWidth: 2,
+            pointRadius: 10,
+            pointHoverRadius: 12
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              color: '#6B7280',
+              font: {
+                weight: 'bold',
+                size: 14
+              },
+              padding: 20,
+              usePointStyle: true,
+              pointStyle: 'circle'
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.dataset.label}: Profitability ${context.parsed.x}% | Sustainability ${context.parsed.y}%`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Profitability (%)',
+              color: '#356965',
+              font: {
+                weight: 'bold',
+                size: 14
+              }
+            },
+            min: 0,
+            max: 100,
+            grid: {
+              color: '#E5E7EB',
+            },
+            ticks: {
+              color: '#6B7280'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Sustainability (%)',
+              color: '#356965',
+              font: {
+                weight: 'bold',
+                size: 14
+              }
+            },
+            min: 0,
+            max: 100,
+            grid: {
+              color: '#E5E7EB',
+            },
+            ticks: {
+              color: '#6B7280'
+            }
+          }
+        }
+      }
+      });
       // Show title immediately after mount
       setTimeout(() => {
         showTitle = true;
@@ -95,7 +191,8 @@
     </div>
   
     <!-- Second page - Analytics -->
-    <div class="h-auto w-full bg-green-100 p-8 relative snap-start">
+    
+    <div class="h-auto w-full bg-green-100 p-8 relative snap-start">      
       {#if showAnalytics}
         <h2 
           class="text-3xl md:text-4xl font-bold text-green-800 absolute top-8 left-8" 
@@ -111,6 +208,10 @@
         </p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white bg-opacity-70 p-6 rounded-lg shadow-sm">
+            <canvas bind:this={ctx} height = 200px></canvas>
+          </div>
+
           {#each data["environmentAnalysis"] as mat}
             <!-- <p>{mat}</p> -->
             <div class="bg-white bg-opacity-70 p-6 rounded-lg shadow-sm">

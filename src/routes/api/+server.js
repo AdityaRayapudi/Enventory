@@ -12,6 +12,7 @@ let environmentAnalysis;
  */
 let genAnalysis;
 let totalScore = 0
+let profitIncrease = 0
 
 export async function POST({ request }) {
     // console.log("Hi");
@@ -39,6 +40,10 @@ export async function POST({ request }) {
     // @ts-ignore
     totalScore = Math.round(totalScore / environmentAnalysis.length)
     
+    // @ts-ignore
+    for (const improv of genAnalysis) {
+        profitIncrease += improv["profit"]
+    }
 
     return json({ registered: true, message: 'Success' });
 }
@@ -47,7 +52,8 @@ export function GET() {
     const data = {
         environmentAnalysis,
         genAnalysis,
-        totalScore
+        totalScore,
+        profitIncrease
     }
 
     return json(data)

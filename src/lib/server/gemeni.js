@@ -75,7 +75,7 @@ export async function generalAnalysis(prompt) {
                     properties: {
                         'category': {
                             type: Type.STRING,
-                            description: 'The category of what the imporvment falls into',
+                            description: 'The category of what the imporvment falls into start with an emoji that represents the category',
                             nullable: false,
                         },
                         'improvement': {
@@ -125,7 +125,7 @@ export async function environmentAnalysis(prompt) {
                     properties: {
                         'rawMaterial': {
                             type: Type.STRING,
-                            description: 'Name of the raw material',
+                            description: 'Name of the raw material start with an emoji that represents the material',
                             nullable: false,
                         },
                         'environmentalImprovement': {
